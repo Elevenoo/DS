@@ -13,17 +13,17 @@ class Stack:
         self.size = 0
         self.data = []
         
-        
+    # 压入元素
     def push(self,item):
         self.data.insert(self.top,item)     
         self.top += 1
         self.size = self.size + 1
-        
+    # 弹出栈顶元素  
     def pop(self):
         self.top -= 1
         self.size -= 1
         return self.data[self.top]
-    
+    # 可视化
     def display(self):
         for i in range(self.size):
             print(self.data[i],end=' ')
@@ -45,13 +45,10 @@ if __name__=="__main__":
     while delta_size != 0:
         # 经历过遍历后的栈中保存了前一轮未被消除的元素，pop出后再次遍历
         if s.size != 0:
-            if s.size ==1:
-                break
-            else:      
-                length = 0
-                while s.size != 0:
-                    myarray[length] = s.pop()
-                    length += 1
+            length = 0
+            while s.size != 0:
+                myarray[length] = s.pop()
+                length += 1
         # 若元素左右相同不被消除，压入栈中保存，注意边界元素myarray[0]和myarray[length-1]
         if myarray[0] == myarray[1]:s.push(myarray[0])
         i = 1
@@ -65,6 +62,9 @@ if __name__=="__main__":
         print("stack:",end='')
         s.display()
         
+        # 遍历结束后若栈中没有元素或只有一个元素，则循环结束
+        if s.size == 0 or s.size == 1:break
+     
         # 判断是否有新被消除的元素
         delta_size = s.size - pre_size
         pre_size = s.size
